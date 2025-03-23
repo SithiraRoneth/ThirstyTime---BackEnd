@@ -12,8 +12,12 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.1",
-    "express": "^4.21.2"
+    "@types/mongoose": "^5.11.96",
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.2"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
