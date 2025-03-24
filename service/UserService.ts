@@ -15,3 +15,30 @@ export async function AddUser(user:IUser){
         console.log("Error During User :", err)
     }
 }
+
+export async function VerifyUser(user: Partial<IUser>) {
+    try {
+        const existingUser: IUser | null = await User.findOne({ email: user.email });
+
+        if (!existingUser) {
+            console.error("User not found");
+            return false;
+        }
+
+        if (!user.password) {
+            console.error("Password is missing in request");
+            return false;
+        }
+
+        if (!existingUser.password) {
+            console.error("Stored password is missing");
+            return false;
+        }
+
+        const isMatch = await bcrypt.compare(user.password, existingUser.password);
+        return isMatch;
+    } catch (error) {
+        console.error("Error during user verification:", error);
+        return false;
+    }
+}
