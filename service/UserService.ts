@@ -1,7 +1,7 @@
-import User, {IUser} from "../model/UserModel";
+import User, {UserModel} from "../model/UserModel";
 import bcrypt from 'bcrypt';
 
-export async function AddUser(user:IUser){
+export async function AddUser(user:UserModel){
     const hashPassword = await bcrypt.hash(user.password,10);
     try{
         const newUser = new User({
@@ -16,9 +16,9 @@ export async function AddUser(user:IUser){
     }
 }
 
-export async function VerifyUser(user: Partial<IUser>) {
+export async function VerifyUser(user: Partial<UserModel>) {
     try {
-        const existingUser: IUser | null = await User.findOne({ email: user.email });
+        const existingUser: UserModel | null = await User.findOne({ email: user.email });
 
         if (!existingUser) {
             console.error("User not found");

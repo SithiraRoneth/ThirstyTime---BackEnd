@@ -1,6 +1,6 @@
 import express from "express";
 import {AddUser, VerifyUser} from "../service/UserService";
-import {IUser} from "../model/UserModel";
+import {UserModel} from "../model/UserModel";
 
 const router = express.Router();
 
@@ -21,7 +21,7 @@ router.post('/login',async (req,res)=>{
     const email = req.body.email;
     const password = req.body.password;
 
-    const user:Partial<IUser> = {email,password};
+    const user:Partial<UserModel> = {email,password};
     try{
         const isVerified = await VerifyUser(user);
         if (isVerified){
