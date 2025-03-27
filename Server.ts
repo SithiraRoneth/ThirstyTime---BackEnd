@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import UserController from "./controller/UserController";
+import OrderDetails from "./controller/OrderDetails";
 
 const app = express();
 const mongoUrl = 'mongodb://localhost:27017/ThirstyFirst';
@@ -19,6 +20,7 @@ mongoose
 app.use(express.json());
 
 app.use('/user',UserController);
+app.use('/orders',OrderDetails);
 
 app.listen(3000,()=>{
     console.log("Server running port 3000")
